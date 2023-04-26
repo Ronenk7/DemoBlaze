@@ -1,0 +1,9 @@
+{
+  "user_name": ["Ronen", "", "ronen"],
+  "password": ["ronen123", "", "Ronen123"],
+  "expected login": "Log in",
+  "expected_valid": "Welcome Ronen",
+  "expected_invalid1": "Please fill out Username and Password.",
+  "expected_invalid2": "Wrong password.",
+  "time_out": 10
+}

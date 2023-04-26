@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Environment>
+    <!-- TimeOut -->
+    <TimeOut>10</TimeOut>
+    <!-- General
+    <PlatformName>web</PlatformName>-->
+
+    <!-- Authorization -->
+    <UserName>Ronen</UserName>
+    <Password>ronen123</Password>
+
+    <!-- Web -->
+    <BrowserName>chrome</BrowserName>
+    <url>https://www.mortgagecalculator.org/</url>
+
+</Environment>
