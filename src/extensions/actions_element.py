@@ -4,11 +4,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from src.utilities.webdriver_setup import WebDriverSetup
+from allure import step
 
 
 class ActionsElement(WebDriverSetup):
     """ This class contains generic methods that interact with the page UI. """
 
+    @step("Verify Visibility of Elements")
     def verify_visibility_of_elements(self, locators_list: list[tuple]) -> bool:
         """
         Clicks on an item that is located by a specified locator after verifying it is displayed.
@@ -25,6 +27,7 @@ class ActionsElement(WebDriverSetup):
             return False
         return True
 
+    @step("Send keys to Visible Item")
     def send_keys_to_visible_item(self, by_locator: tuple, value: str):
         """
         Sends keys to a field that is located by a specific locator after verifying
@@ -35,6 +38,7 @@ class ActionsElement(WebDriverSetup):
         """
         self.wait.until(EC.visibility_of_element_located(by_locator)).send_keys(value)
 
+    @step("Send keys to Element")
     def send_keys_to_element(self, by_element, value: str):
         """
         Sends keys to a field that is located by a specific element after verifying
@@ -45,6 +49,7 @@ class ActionsElement(WebDriverSetup):
         """
         self.wait.until(EC.visibility_of(by_element)).send_keys(value)
 
+    @step("Click on Visible Item")
     def click_visible_item(self, by_locator: tuple) -> None:
         """
         Clicks on an item that is located by a specified locator after verifying it is displayed.
@@ -53,6 +58,7 @@ class ActionsElement(WebDriverSetup):
         """
         self.wait.until(EC.visibility_of_element_located(by_locator)).click()
 
+    @step("Scroll and hover Element")
     def scroll_and_hover_element(self, by_locator: tuple) -> None:
         """
         Scrolls the required element into view and mouse hover on it.
@@ -63,6 +69,7 @@ class ActionsElement(WebDriverSetup):
         actions = ActionChains(self.driver)
         actions.move_to_element(element).perform()
 
+    @step("Scroll Element to the Top of the Screen")
     def scroll_element_to_top(self, by_locator: tuple) -> WebElement:
         """
         Scrolls the element to the top of the page.
@@ -73,6 +80,7 @@ class ActionsElement(WebDriverSetup):
         element.location_once_scrolled_into_view
         return element
 
+    @step("Scrolls Element to the Top of the Screen")
     def scrolls_element_to_top(self, elem) -> WebElement:
         """
         Scrolls the element to the top of the page.
@@ -82,6 +90,7 @@ class ActionsElement(WebDriverSetup):
         elem.location_once_scrolled_into_view
         return elem
 
+    @step("Scroll Element to the Top of the Screen and Click on It")
     def scroll_to_top_and_click(self, by_locator: tuple):
         """
         Scrolls element to top of the browser screen and clicks on it.
@@ -92,6 +101,7 @@ class ActionsElement(WebDriverSetup):
         element.click()
         sleep(0.5)
 
+    @step("Scrolls Element to the Top of the Screen and Click on It")
     def scrolls_element_to_top_and_click(self, elem):
         """
         Scrolls element to top of the browser screen and clicks on it.
@@ -103,6 +113,7 @@ class ActionsElement(WebDriverSetup):
         elem.click()
         sleep(0.5)
 
+    @step("Get Table Cell Text by XPATH Locator")
     def get_table_cell_text_by_xpath(self, table, search_column: int, search_text: str,
                                      return_column_text: int) -> str:
         table_xpath_by_id = f"//*[@id=\"{table.get_property('id')}\"]"
@@ -112,6 +123,7 @@ class ActionsElement(WebDriverSetup):
 
         return self.driver.find_element(By.XPATH, return_text_xpath).text
 
+    @step("Get Table Cells Text by XPATH Locator")
     def get_table_cells_text_by_xpath(self, table, search_column: int, return_column_text: int):
         table_xpath_by_id = f"//*[@id=\"{table.get_property('id')}\"]"
         # example: // *[ @ id = "tbodyid"] / tr / td[2] / ancestor::tr / td[3]
